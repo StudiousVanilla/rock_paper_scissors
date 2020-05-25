@@ -1,0 +1,52 @@
+.score{
+    font-weight: bold;
+    margin-right: 50px;
+}
+
+#container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button{
+    margin: 50px 15px 30px 15px;
+    font-size: 30px;
+}
+
+#rock{
+    background-color: lightcoral;
+    color: black;
+    margin-right: 50px;
+}
+
+#paper{
+    background-color:white;
+    color: black;
+    margin-right: 40px;
+    margin-left: 40px;
+}
+
+#scissors{
+    background-color: skyblue;
+    color:  black;
+    margin-left: 50px;
+}
+
+p{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.winner{
+    font-size: 60px;
+    margin-top: 50px;
+    color: rgb(0, 0, 0);
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 2px;
+    font-family:monospace;
+}
+
+/*text-shadow: 1px 1px black,-1px -1px black, 1px -1px black,-1px 1px black;*/

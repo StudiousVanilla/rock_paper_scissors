@@ -4,64 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock-Paper-Scissors</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id='container'>
+        <button class = 'playerButtons' id="rock">Rock</button>
+        <button class = 'playerButtons' id = "paper">Paper</button>
+        <button class = 'playerButtons' id = "scissors">Scissors</button>
+    </div>
     <script>
+        const container = document.querySelector('#container');
+
+        const playerScore = document.createElement("p");
+        playerScore.classList.add('score');
+        playerScore.setAttribute('id','player-score');
+        container.appendChild(playerScore);
+
+        const computerScore = document.createElement("p");
+        computerScore.classList.add('score');
+        computerScore.setAttribute('id','computer-score');
+        container.appendChild(computerScore);
+
+        const winnerText = document.createElement("p");
+        winnerText.classList.add('winner');
+        container.appendChild(winnerText);
+
+
+
+
 
         let moves = ['rock','paper','scissors'];
-        let playerScore = 0;
-        let computerScore = 0;
         let score = {'player':0,'computer':0};
+        
 
 
         let round = (computerPlay, playerPlay) => 
         {
-            playerPlay = playerPlay.toLowerCase();
-
             if (computerPlay === playerPlay){
                 return "It's a tie!"
             }
 
             else if((computerPlay === 'rock' && playerPlay == 'paper')||(computerPlay === 'paper' && playerPlay == 'scissors')||(computerPlay === 'scissors' && playerPlay === 'rock')){
-                playerScore += 1;
                 score['player'] += 1;
                 return "You win! "+playerPlay+" beats "+computerPlay;
             }
 
             else{
-                computerScore += 1;
                 score['computer'] += 1;
                 return"You lose! "+computerPlay+" beats "+playerPlay;  
             }
         }
 
 
-        let game = (x) =>{
-            for(let i = 0; i < x; i++){
 
-            let computerPlay = (array) => array[1];
-            let playerPlay = prompt("rock, paper or scissors?")
+        let scoreDisplay = () => 
+        {
+            playerScore.textContent = "Player Score: "+score['player']; 
+            computerScore.textContent = "Computer Score: "+score['computer'];
+        }
 
-            console.log(round(computerPlay(moves),playerPlay));
+
+        let winnerDisplay = () =>{
+            if (score['player'] === 5){
+                winnerText.textContent = "Yet again, man triumphs over Machine!"
             }
-            console.table(score);
-            if (score['player'] > score['computer']){
-                console.log("You win!");
+            if (score['computer'] === 5){
+                winnerText.textContent = "Flesh is weak!"
             }
-            else if (score['computer'] > score['player']){
-                console.log("You lose!")
-            }
-            else{
-                console.log("Tis' a tie!")
-            }
-        } 
-
-        game(3);  
-       
-        
+        }
 
 
+
+
+        const rockButton = document.querySelector('#rock')
+        rockButton.addEventListener('click', () =>{
+           let playerSelection = 'rock';
+            round(moves[1],playerSelection);
+            scoreDisplay();
+            winnerDisplay();
+        });
+
+        const paperButton = document.querySelector('#paper')
+        paperButton.addEventListener('click', () =>{
+            let playerSelection = 'paper';
+            round(moves[1],playerSelection);
+            scoreDisplay();
+            winnerDisplay();
+        });
+
+        const scissorsButton = document.querySelector('#scissors')
+        scissorsButton.addEventListener('click', () =>{
+            let playerSelection = 'scissors';
+            round(moves[1],playerSelection);
+            scoreDisplay();
+            winnerDisplay();
+        });
     </script>
 
 </body>
